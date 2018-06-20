@@ -1,0 +1,14 @@
+node_modules/
+coverage
+.nyc_output/
+*.DS_Store
+auth-info.json
+config.json
+.idea/
+npm-debug.log
+*.class
+target
+.classpath
+.settings
+.project
+/bin/
