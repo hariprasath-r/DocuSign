@@ -1,0 +1,25 @@
+{
+    "sub": "a4687be3-83c8-45e7-a00e-846f3b237fd7",
+    "name": "BellCanada eSignESIDE",
+    "given_name": "BellCanada",
+    "family_name": "eSignESIDE",
+    "created": "2018-06-05T15:18:41.423",
+    "email": "aparajita.maddi@bell.ca",
+    "accounts": [
+        {
+            "account_id": "6c7b5460-8f21-487e-9681-c7e7ad541a90",
+            "is_default": true,
+            "account_name": "Bell Canada",
+            "base_uri": "https://demo.docusign.net",
+            "organization": {
+                "organization_id": "90ae4f9f-d54f-4b3f-b9ba-3eeecad3f7a1",
+                "links": [
+                    {
+                        "rel": "self",
+                        "href": "https://account-d.docusign.com/organizations/90ae4f9f-d54f-4b3f-b9ba-3eeecad3f7a1"
+                    }
+                ]
+            }
+        }
+    ]
+}

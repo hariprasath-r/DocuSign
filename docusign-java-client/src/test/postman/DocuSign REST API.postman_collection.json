@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "3ef65687-d936-1847-51ce-f1f61ddf88b9",
+		"name": "DocuSign - URI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Request Permission for Impersonation of User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://account-d.docusign.com/oauth/auth?response_type=code&scope=signature%20impersonation&client_id=b7aa2156-72d1-4e6e-a19e-609cf430879c&redirect_uri=https://www.appdemo.docusign.com",
+					"protocol": "https",
+					"host": [
+						"account-d",
+						"docusign",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"auth"
+					],
+					"query": [
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "scope",
+							"value": "signature%20impersonation"
+						},
+						{
+							"key": "client_id",
+							"value": "b7aa2156-72d1-4e6e-a19e-609cf430879c"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.appdemo.docusign.com"
+						}
+					]
+				},
+				"description": "The request responds with a URI with access url to grant permission for an api to impersonate an user"
+			},
+			"response": []
+		},
+		{
+			"name": "Creating a JWT",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "typ",
+						"value": "JWT"
+					},
+					{
+						"key": "alg",
+						"value": "RSA256"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"iss\": \"integrator-key\",\r\n\t\"sub\": \"user-id\",\r\n\t\"iat\": 1523900289,\r\n\t\"exp\": 1523903289,\r\n\t\"aud\": \"account-d.docusign.com\",\r\n\t\"scope\": \"signature impersonation\"\r\n}"
+				},
+				"url": {
+					"raw": "https://account-d.docusign.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"account-d",
+						"docusign",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": "The request is only done through jwt API"
+			},
+			"response": []
+		},
+		{
+			"name": "Requesting  JWT access token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://account-d.docusign.com/oauth/token?grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhNDY4N2JlMy04M2M4LTQ1ZTctYTAwZS04NDZmM2IyMzdmZDciLCJhdWQiOiJhY2NvdW50LWQuZG9jdXNpZ24uY29tIiwibmJmIjoxNTI4ODkyNTc0LCJzY29wZSI6InNpZ25hdHVyZSIsImlzcyI6ImI3YWEyMTU2LTcyZDEtNGU2ZS1hMTllLTYwOWNmNDMwODc5YyIsImV4cCI6MTUyODg5NjE3NH0.CSRwiFWEZM86Wttone4VWfXeA0EkArI6cBiTQDCHocV-KgcR7psfAuXQ3sJrEU9_AvOTpuNyVFTHpwSa2fAiWXWrMrTrdJ_Q9vaqELDhtCPy7eJpAar9cYi5MrcOwwnChAc4s2jAEwqzrAEF6A-LzlfPfpZnkPLWHYVaT8WR_v19DvDugXE2RxikdgH3ZreQJgR-PxWy4gtMvdVLfgEBEsM196mCAKwbv0WZ6WBrQbcetYuOKxo9HqelN9YmBLMe_OYwxQBHWC9vTy__1ffPzIybBSHS-u3TzBIyqYIi0cIYDNdSIe0WnKRRMd6F3ajBJxODhYSGN65Sozbo8GFBXg",
+					"protocol": "https",
+					"host": [
+						"account-d",
+						"docusign",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "urn:ietf:params:oauth:grant-type:jwt-bearer"
+						},
+						{
+							"key": "assertion",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhNDY4N2JlMy04M2M4LTQ1ZTctYTAwZS04NDZmM2IyMzdmZDciLCJhdWQiOiJhY2NvdW50LWQuZG9jdXNpZ24uY29tIiwibmJmIjoxNTI4ODkyNTc0LCJzY29wZSI6InNpZ25hdHVyZSIsImlzcyI6ImI3YWEyMTU2LTcyZDEtNGU2ZS1hMTllLTYwOWNmNDMwODc5YyIsImV4cCI6MTUyODg5NjE3NH0.CSRwiFWEZM86Wttone4VWfXeA0EkArI6cBiTQDCHocV-KgcR7psfAuXQ3sJrEU9_AvOTpuNyVFTHpwSa2fAiWXWrMrTrdJ_Q9vaqELDhtCPy7eJpAar9cYi5MrcOwwnChAc4s2jAEwqzrAEF6A-LzlfPfpZnkPLWHYVaT8WR_v19DvDugXE2RxikdgH3ZreQJgR-PxWy4gtMvdVLfgEBEsM196mCAKwbv0WZ6WBrQbcetYuOKxo9HqelN9YmBLMe_OYwxQBHWC9vTy__1ffPzIybBSHS-u3TzBIyqYIi0cIYDNdSIe0WnKRRMd6F3ajBJxODhYSGN65Sozbo8GFBXg"
+						}
+					]
+				},
+				"description": "URI to get JWT accesstoken, tokentype and bearer"
+			},
+			"response": []
+		},
+		{
+			"name": "Requesting UserInfo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1MS00Y2U5LWFmMWMtNjg5ODEyMjAzMzE3In0.AQgAAAABAAUABwAAVSuqkM_VSAgAAL3vC5nP1UgCAON7aKTIg-dFoA6Ebzsjf9cVAAEAAAAYAAEAAAAFAAAADQAkAAAAYjdhYTIxNTYtNzJkMS00ZTZlLWExOWUtNjA5Y2Y0MzA4NzljIwAkAAAAYjdhYTIxNTYtNzJkMS00ZTZlLWExOWUtNjA5Y2Y0MzA4Nzlj.20LlMChHrIkFFFg29fEGQQb0O4qPSo8LhVHV0b3XIpnFVjbycNzQVGqJBQ83gXhW7uFfEVMZ1n-UV-Hweu9D6CiLVkXmy00irq8e5UGxaqKgmbKT5iwI3cim8ilSdOKpZOZ44TMMjt95KCNs1uA783UraVcfHKq0HXTHFykPa-JC-iFSbbExa9HhkjacTrqmwi5NelL-mgNXRhM60SDXL8xHXPVi7Vj9fmfmRKo82ty3ZNbCPqO8kusKBooTVqTfP_iEaSrs5JDfW1XvgjkMQPiuhHFKnWA4bqIqKUngd7m5OdNHUamX4mkUrE8kkVJU0kUAS-NDRoSsbzaKks0LhQ"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://account-d.docusign.com/oauth/userinfo",
+					"protocol": "https",
+					"host": [
+						"account-d",
+						"docusign",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"userinfo"
+					]
+				},
+				"description": "Return UserInfo"
+			},
+			"response": []
+		},
+		{
+			"name": "Sample Request After getting UserInfo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1MS00Y2U5LWFmMWMtNjg5ODEyMjAzMzE3In0.AQgAAAABAAUABwCAQohzKNHVSAgAgKpM1TDR1UgCAON7aKTIg-dFoA6Ebzsjf9cVAAEAAAAYAAEAAAAFAAAADQAkAAAAYjdhYTIxNTYtNzJkMS00ZTZlLWExOWUtNjA5Y2Y0MzA4NzljIwAkAAAAYjdhYTIxNTYtNzJkMS00ZTZlLWExOWUtNjA5Y2Y0MzA4Nzlj.WHnU2KAn8XWKKRTTjLiCYwR8quLGWFTK7-dVYAM9TUv08DbUzCeZ8eawcP2q9FAi7ljNYNFf4Ju9YULsvOmmYvCtDY1wQ5CIRDcs5jKlt-sfM64NOGLMWAJam5BDGaMi17XLOGRy4c2KrxW4r50O_8djj4DnqaYUgUr_hiew0lywy_t-ye9U1-9ozAd7GSh3sGuTc54_CoRRkE7Kr42_87bC2DdYFnq1RFYEQjT7PipPBU643_pBOyD2vRgKlosn1h3MvZu_QgdBujTjsm-HrOyuPU0gukSLKJZ6iJZmaBtjuvVy2rnYA9APaIZVlcv7hg5ayi7zoAC0SwUmek3SMA"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://demo.docusign.net/restapi/v2/accounts/6c7b5460-8f21-487e-9681-c7e7ad541a90/brands",
+					"protocol": "https",
+					"host": [
+						"demo",
+						"docusign",
+						"net"
+					],
+					"path": [
+						"restapi",
+						"v2",
+						"accounts",
+						"6c7b5460-8f21-487e-9681-c7e7ad541a90",
+						"brands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Organization Base URI - Sample Request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJNVCIsImFsZyI6IlJTMjU2Iiwia2lkIjoiNjgxODVmZjEtNGU1MS00Y2U5LWFmMWMtNjg5ODEyMjAzMzE3In0.AQgAAAABAAUABwCAQohzKNHVSAgAgKpM1TDR1UgCAON7aKTIg-dFoA6Ebzsjf9cVAAEAAAAYAAEAAAAFAAAADQAkAAAAYjdhYTIxNTYtNzJkMS00ZTZlLWExOWUtNjA5Y2Y0MzA4NzljIwAkAAAAYjdhYTIxNTYtNzJkMS00ZTZlLWExOWUtNjA5Y2Y0MzA4Nzlj.WHnU2KAn8XWKKRTTjLiCYwR8quLGWFTK7-dVYAM9TUv08DbUzCeZ8eawcP2q9FAi7ljNYNFf4Ju9YULsvOmmYvCtDY1wQ5CIRDcs5jKlt-sfM64NOGLMWAJam5BDGaMi17XLOGRy4c2KrxW4r50O_8djj4DnqaYUgUr_hiew0lywy_t-ye9U1-9ozAd7GSh3sGuTc54_CoRRkE7Kr42_87bC2DdYFnq1RFYEQjT7PipPBU643_pBOyD2vRgKlosn1h3MvZu_QgdBujTjsm-HrOyuPU0gukSLKJZ6iJZmaBtjuvVy2rnYA9APaIZVlcv7hg5ayi7zoAC0SwUmek3SMA"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://account-d.docusign.com/organizations/90ae4f9f-d54f-4b3f-b9ba-3eeecad3f7a1",
+					"protocol": "https",
+					"host": [
+						"account-d",
+						"docusign",
+						"com"
+					],
+					"path": [
+						"organizations",
+						"90ae4f9f-d54f-4b3f-b9ba-3eeecad3f7a1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
