@@ -6,6 +6,30 @@
 	},
 	"item": [
 		{
+			"name": "REST_API_SAMPLE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8082/Messenger/webapi/messages/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"Messenger",
+						"webapi",
+						"messages",
+						"1"
+					]
+				},
+				"description": "Sample request URI from Messenger app"
+			},
+			"response": []
+		},
+		{
 			"name": "TestRequest",
 			"request": {
 				"method": "GET",
@@ -34,11 +58,13 @@
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/xml"
+						"value": "application/xml",
+						"disabled": true
 					},
 					{
 						"key": "Accept",
-						"value": "application/xml"
+						"value": "application/xml",
+						"disabled": true
 					}
 				],
 				"body": {
@@ -46,16 +72,86 @@
 					"raw": "<DocuSignEnvelopeInformation xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://www.docusign.net/API/3.0\">\r\n   <EnvelopeStatus>\r\n      <RecipientStatuses>\r\n         <RecipientStatus>\r\n            <Type>Signer</Type>\r\n            <Email>user.email@address.com</Email>\r\n            <UserName>User Name</UserName>\r\n            <RoutingOrder>1</RoutingOrder>\r\n            <Sent>2010-06-26T09:19:18.883</Sent>\r\n            <Delivered>2010-06-26T09:19:40.723</Delivered>\r\n            <DeclineReason xsi:nil=\"true\"/>\r\n            <Status>Delivered</Status>\r\n            <RecipientIPAddress>::1</RecipientIPAddress>\r\n            <CustomFields/>\r\n            <TabStatuses>\r\n               <TabStatus>\r\n                  <TabType>Custom</TabType>\r\n                  <Status>Active</Status>\r\n                  <XPosition>364</XPosition>\r\n                  <YPosition>52</YPosition>\r\n                  <TabLabel>Radio</TabLabel>\r\n                  <TabName>Two</TabName>\r\n                  <TabValue/>\r\n                  <DocumentID>1</DocumentID>\r\n                  <PageNumber>2</PageNumber>\r\n                  <OriginalValue/>\r\n                  <ValidationPattern/>\r\n                  <RoleName>TestRole</RoleName>\r\n               </TabStatus>\r\n            </TabStatuses>\r\n            <AccountStatus>Active</AccountStatus>\r\n            <RecipientId>fb89d2ee-2876-4290-b530-ff1833d5d0d2</RecipientId>\r\n         </RecipientStatus>\r\n      </RecipientStatuses>\r\n      <TimeGenerated>2010-06-26T09:19:45.771206-07:00</TimeGenerated>\r\n      <EnvelopeID>0aa561b8-b4d9-47e0-a615-2367971f876b</EnvelopeID>\r\n      <Subject>CreateEnvelopeFromTemplates Test</Subject>\r\n      <UserName>User Name</UserName>\r\n      <Email>user.email@address.com</Email>\r\n      <Status>Delivered</Status>\r\n      <Created>2010-06-26T09:16:21.27</Created>\r\n      <Sent>2010-06-26T09:19:19.01</Sent>\r\n      <Delivered>2010-06-26T09:19:40.747</Delivered>\r\n      <ACStatus>Original</ACStatus>\r\n      <ACStatusDate>2010-06-26T09:16:21.27</ACStatusDate>\r\n      <ACHolder>ACHolder Name</ACHolder>\r\n      <ACHolderEmail>ACHolder.email@address.com</ACHolderEmail>\r\n      <ACHolderLocation>ACHolder Location</ACHolderLocation>\r\n      <SigningLocation>Online</SigningLocation>\r\n      <SenderIPAddress>::1</SenderIPAddress>\r\n      <EnvelopePDFHash/>\r\n      <CustomFields>\r\n         <CustomField>\r\n            <Name>Envelope Field 1</Name>\r\n            <Show>False</Show>\r\n            <Required>False</Required>\r\n            <Value/>\r\n         </CustomField>\r\n         <CustomField>\r\n            <Name>Envelope Field 2</Name>\r\n            <Show>False</Show>\r\n            <Required>False</Required>\r\n            <Value/>\r\n         </CustomField>\r\n      </CustomFields>\r\n      <AutoNavigation>true</AutoNavigation>\r\n      <EnvelopeIdStamping>true</EnvelopeIdStamping>\r\n      <AuthoritativeCopy>false</AuthoritativeCopy>\r\n      <DocumentStatuses>\r\n         <DocumentStatus>\r\n            <ID>1</ID>\r\n            <Name>Document_Name</Name>\r\n            <TemplateName>radio parents</TemplateName>\r\n            <Sequence>1</Sequence>\r\n         </DocumentStatus>\r\n      </DocumentStatuses>\r\n   </EnvelopeStatus>\r\n   <DocumentPDFs>\r\n      <DocumentPDF>\r\n         <Name>DocumentPDF_Name</Name>\r\n         <PDFBytes>PDFBytes_Information</PDFBytes>\r\n      </DocumentPDF>\r\n   </DocumentPDFs>\r\n</DocuSignEnvelopeInformation>"
 				},
 				"url": {
-					"raw": "http://localhost:8082/DocuSignConnect/webapi/myresource",
+					"raw": "http://localhost:8080/DocuSignConnect/eside/myresource",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8082",
+					"port": "8080",
 					"path": [
 						"DocuSignConnect",
-						"webapi",
+						"eside",
 						"myresource"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DocuSign ESIDE Service Status Check",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<xml>\n\t<test>Test</test>\n</xml>"
+				},
+				"url": {
+					"raw": "http://localhost:8080/DocuSignConnect/eside/eventListener",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"DocuSignConnect",
+						"eside",
+						"eventListener"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DocuSign ESIDE Service",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<xml>\n\t<test>Test</test>\n</xml>"
+				},
+				"url": {
+					"raw": "http://localhost:8080/DocuSignConnect/eside/eventListener",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"DocuSignConnect",
+						"eside",
+						"eventListener"
 					]
 				}
 			},
