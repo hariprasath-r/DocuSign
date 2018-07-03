@@ -8,8 +8,6 @@ public class JWT_TestMain {
 //		jwtObj1.getJWT();
 //		jwtObj1.JWTLoginTest();
 		jwtObj1.RequestASignatureTest();
-		
-
 	}
 
 }
