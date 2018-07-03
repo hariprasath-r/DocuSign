@@ -3,8 +3,10 @@ package in.hari.java.ParserApp.service;
 import java.io.IOException;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import in.hari.java.ParserApp.model.ESignature;
@@ -15,24 +17,47 @@ public class ParserService {
 	
 	private ObjectMapper mapper = null;
 	
-	public void xTojConvertor(String data) throws JsonParseException, JsonMappingException, IOException {
-		System.out.println(">---Input Data---<\n"+data);
+	public String xmlToJsonConverter(String data) throws JsonParseException, JsonMappingException, IOException {
+		System.out.println(">---Input XML---<\n"+data);
 		
+		/*
+		 * Converting XML to POJO
+		 */
 		mapper = new XmlMapper();
 		eSignature = mapper.readValue(data.getBytes(), ESignature.class);
 		System.out.println(">---POJO---<\n"+eSignature);
 		
-		mapper = new ObjectMapper();
-		
-//		JsonObject json = mapper.readValue(eSignature, ESignature.class);
-		
-		
 		/*
-		 * Converts Object to JSON as string
+		 * Converting POJO to JSON as string
+		 * 1. SerializationFeature.WRAP_ROOT_VALUE is used to get Root element also
 		 */
+		mapper = new ObjectMapper();
+		mapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
 		String jsonData = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(eSignature);
 		System.out.println(">---JSON---<\n"+jsonData);
+		
+		return jsonData;
 	}
 	
+	public String jsonToXmlConverter(String data) throws JsonParseException, JsonMappingException, IOException {
+		System.out.println(">---Input JSON---<\n"+data);
+		
+		/*
+		 * Converting JSON to POJO
+		 */
+		mapper = new ObjectMapper();
+		mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
+		eSignature = mapper.readValue(data.getBytes(), ESignature.class);
+		System.out.println(">---POJO---<\n"+eSignature);
+		
+		/*
+		 * Converting POJO to XML
+		 */
+		mapper = new XmlMapper();
+		String xmlData = mapper.writeValueAsString(eSignature);
+		System.out.println(">---XML---<\n"+xmlData);
+		
+		return xmlData;
+	}
 	
 }

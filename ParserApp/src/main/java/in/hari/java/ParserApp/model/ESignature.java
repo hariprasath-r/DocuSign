@@ -1,11 +1,13 @@
 package in.hari.java.ParserApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JacksonXmlRootElement(localName="ESignatureCreateRequest")
 @JsonRootName(value="ESignatureCreateRequest")
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class ESignature {
 
 	public class InputDO {
@@ -49,6 +51,7 @@ public class ESignature {
 
 	}
 	
+	@JsonProperty("inputDO")
 	private InputDO inputDO;
 
 	public InputDO getInputDO() {
