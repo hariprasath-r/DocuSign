@@ -623,6 +623,7 @@ public class ApiClient {
 				    .type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)
 				    .post(ClientResponse.class, form);
 	
+		  System.out.println(">---Response---<");
 		  ObjectMapper mapper = new ObjectMapper();
 	      JsonNode responseJson = mapper.readValue(response.getEntityInputStream(), JsonNode.class);
 	      System.out.println(responseJson);

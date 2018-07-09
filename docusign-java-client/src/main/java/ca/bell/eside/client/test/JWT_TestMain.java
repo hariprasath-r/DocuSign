@@ -6,8 +6,8 @@ public class JWT_TestMain {
 
 		JWT_Test jwtObj1 = new JWT_Test();
 //		jwtObj1.getJWT();
-//		jwtObj1.JWTLoginTest();
-		jwtObj1.RequestASignatureTest();
+		jwtObj1.JWTLoginTest();
+//		jwtObj1.RequestASignatureTest();
 	}
 
 }
